@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- HTMX -->
+	<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+	
+	<!-- HTMX Websockets extension https://htmx.org/extensions/web-sockets/ -->
+	<script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+	
+	<!-- Tailwind -->
+	<script src="https://cdn.tailwindcss.com"></script>
+
+	<meta charset="utf-8">
+	<meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+	<title>Realtime Chat</title>
+</head>
+
+<body>
+	<h1 class="text-3xl text-center p-4">Chat</h1>
+	<div hx-ext="ws" ws-connect="/ws">
+		<div class="flex bg-gray-100 p-4">
+			<ul id="chat_room" hx-swap="beforeend" hx-swap-oob="beforeend"></ul>
+		</div>
+
+		<form id="form" ws-send>
+			<input name="text" type="text" class="border-2 border-gray-300 p-2" placeholder="Type your message">
+			<button type="submit" class="bg-blue-500 text-white px-4 py-2">Send</button>
+		</form>
+	</div>
+</body>
+
+</html>
